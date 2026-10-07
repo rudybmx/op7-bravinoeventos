@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: 'DM Sans', sans-serif;
+  --font-dm: 'DM Sans', sans-serif;
+
+  --color-bravino-bg:      #FAF5EE;
+  --color-bravino-surface: #FFFFFF;
+  --color-bravino-alt:     #F2EAE0;
+  --color-bravino-bordo:   #7B1F35;
+  --color-bravino-text:    #2D2320;
+
+  --animate-fade-up:   fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in:   fadeIn 0.8s ease both;
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(0.6); }
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bravino-bg:        #FAF5EE;
+  --bravino-surface:   #FFFFFF;
+  --bravino-alt:       #F2EAE0;
+  --bravino-bordo:     #7B1F35;
+  --bravino-bordo-sub: rgba(123,31,53,0.45);
+  --bravino-text:      #2D2320;
+  --bravino-text-sub:  rgba(45,35,32,0.58);
+  --bravino-divider:   rgba(123,31,53,0.15);
+}
+
+html { scroll-behavior: auto; }
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background-color: var(--bravino-bg);
+  color: var(--bravino-text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #E8DCCB; border-radius: 10px; }
+
+/* Gold divider */
+.gold-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--bravino-divider);
+}
+
+/* Scroll indicator animation */
+.scroll-line {
+  animation: scrollPulse 2.5s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* Selection */
+::selection { background: rgba(123,31,53,0.3); color: var(--bravino-text); }
+
+/* Hero Overlay responsive gradient */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(to bottom, #7B1F35 30%, rgba(123, 31, 53, 0.95) 58%, rgba(123, 31, 53, 0.6) 80%, transparent 100%);
+}
+@media (min-width: 1024px) {
+  .hero-overlay {
+    background: linear-gradient(to right, #7B1F35 22%, rgba(123, 31, 53, 0.95) 38%, rgba(123, 31, 53, 0.75) 55%, rgba(123, 31, 53, 0.2) 78%, transparent 100%);
+  }
+}
